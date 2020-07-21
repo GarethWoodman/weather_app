@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//Imports React object from react
+import React from "react";
+//Imports Titles object from Titles.js
+import Titles from "./components/Titles"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//Instaniate React object by calling a class that extends React.Component
+class App extends React.Component {
+  //Returns JSX code
+  render(){
+    return(
+      <div>
+        <Titles />
+      </div>
+    );
+  }
 }
 
 export default App;
