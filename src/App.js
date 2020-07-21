@@ -9,25 +9,57 @@ import Weather from "./components/Weather"
 const API_KEY = process.env.REACT_APP_API_KEY;
 //Instaniate React object by calling a class that extends React.Component
 class App extends React.Component {
+  state = {
+    temperature: undefined,
+    city: undefined,
+    country: undefined,
+    humidity: undefined,
+    description: undefined,
+    error: undefined
+  }
+
   //Async is a way to make web requests easily
   //Pass in e as 'event'
   getWeather = async (e) => {
+
     //Prevent page from refreshing
     //Prevents default behaviour of component
     e.preventDefault();
+    const city    = e.target.elements.city.value
+    const country = e.target.elements.country.value
+
     //Fetch is a built in JS method to 'fetch' html
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=london&appid=${API_KEY}`);
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
+
     //We convert our api_call into json that we can manipulate
     const data = await api_call.json();
     console.log(data);
+    this.setState({
+      temperature: data.main.temp,
+      city:        data.main,
+      country:     data.sys.country,
+      humidity:    data.main.humidity,
+      description: data.weather[0].description,
+      error: ""
+    });
   }
+
   //Returns JSX code
+  //Form getWeather= is a prop
+  //Prop is called inside the Form object via: this.props.getWeather
   render(){
     return(
       <div>
         <Titles />
         <Form getWeather={this.getWeather}/>
-        <Weather />
+        <Weather
+          temperature=   {this.state.temperature}
+          city=          {this.state.city}
+          country=       {this.state.country}
+          humidity=      {this.state.humidity}
+          description=   {this.state.description}
+          error=         {this.state.error}
+        />
       </div>
     );
   }
