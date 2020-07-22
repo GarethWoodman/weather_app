@@ -34,8 +34,9 @@ class App extends React.Component {
     //We convert our api_call into json that we can manipulate
     const data = await api_call.json();
 
-    if (city && country) {
-      console.log(data);
+    if (city && country && data.cod != '404') {
+      console.log(data.cod);
+      console.log(city);
       this.setState({
         temperature: data.main.temp,
         city:        data.name,
