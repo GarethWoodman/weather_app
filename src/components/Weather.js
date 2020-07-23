@@ -12,7 +12,7 @@ const Weather = props => (
     }
     {
       props.temperature && <p className="weather__key">Temperature:
-      <span className="weather__value"> { props.temperature }</span>
+      <span className="weather__value"> { toCelcius(props.temperature) }</span>
       </p>
     }
     {
@@ -31,6 +31,8 @@ const Weather = props => (
   </div>
 )
 
-
+function toCelcius(temperature) {
+  return `${Math.round(temperature - 273.15)}` + "°C";
+}
 
 export default Weather;
