@@ -1,9 +1,6 @@
 import React from "react";
 
-//Stateless functional component so we can use an arrow function instead of class
-//We can also omit the render() method
 const Weather = props => (
-  // props only get displayed if they are NOT undefined
   <div className="weather__info">
     {
       props.city && props.country && <p className="weather__key"> Location:
