@@ -32,7 +32,7 @@ const Weather = props => (
 )
 
 function toCelcius(temperature) {
-  return `${Math.round(temperature - 273.15)}` + "°C";
+  return Math.round(temperature - 273.15) + "°C";
 }
 
 export default Weather;
